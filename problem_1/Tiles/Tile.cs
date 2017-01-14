@@ -53,17 +53,30 @@ namespace Tiles {
             //number of rows/columns will remain the same
             //keep track of previous block arrangment
             char[,] oldBlock = block;
+            block = new char[height, width];
             for (int i = 0; i<height; i++) //rows
             {
                 for (int j = 0; j<width; j++) //columns
                 {
-
+                    //row is the same, columns will switch
+                    block[i, j] = oldBlock[i, width - 1 - j];
                 }
             }
         }
 
         public void flipHorizontal() { // flip about the horizontal axis
-
+            //number of rows/columns will remain the same
+            //keep track of previous block arrangment
+            char[,] oldBlock = block;
+            block = new char[height, width];
+            for (int i = 0; i < height; i++) //rows
+            {
+                for (int j = 0; j < width; j++) //columns
+                {
+                    //row will switch, columns the same
+                    block[i, j] = oldBlock[height-1-i, j];
+                }
+            }
         }
 
         public void print() {

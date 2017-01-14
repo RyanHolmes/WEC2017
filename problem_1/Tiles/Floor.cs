@@ -8,10 +8,10 @@ namespace Tiles {
     class Floor {
         public int height;
         public int width;
-        public char[][] grid;
-        char[][] originalGrid;
+        public char[,] grid;
+        char[,] originalGrid;
 
-        public Floor(char[][] g) {
+        public Floor(char[,] g) {
             originalGrid = g;
             reset();
         }

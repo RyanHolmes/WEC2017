@@ -9,10 +9,14 @@ namespace Tiles {
 
         public int height;
         public int width;
-        public char[][] block;
+        public char[,] block;
         public int complexity;
 
-        public Tile(char[][] b, int c) {
+        public Tile() {
+
+        }
+
+        public Tile(char[,] b) {
 
         }
 
@@ -34,6 +38,10 @@ namespace Tiles {
 
         public void print() {
 
+        }
+
+        void computeComplexity() {
+            c = 0;
         }
     }
 }

@@ -6,20 +6,27 @@ using System.Threading.Tasks;
 
 namespace Tiles {
     class Program {
-        Tile[] tiles;
-        Tile currentTile;
+        List<Tile> originalTiles = new List<Tile>();
+        Tile currentTile = new Tile();
 
         static void Main(string[] args) {
             System.Console.WriteLine("Hello world!");
             System.Console.ReadKey();
         }
 
-        static void nextTile() {
+       void nextTile() {
             
         }
 
-        static void init() {
+        void init() {
 
+            char[,] A = new char[3,2] {
+                        {'A', 'A'},
+                        {'A', 'A'},
+                        {'A', '0'}
+                    };
+
+            originalTiles.Add(new Tiles.Tile(A));
         }
 
     }

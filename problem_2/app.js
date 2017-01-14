@@ -19,5 +19,5 @@ module.exports = function heuristic(mapState){
 	},0);
 	// because each move is a swap, and an A* cannot overestimate the distance, 
 	// it should be the half score, which is the theoretical number of steps.
-	return score/2;
+	return score;
 }

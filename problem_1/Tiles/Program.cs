@@ -19,10 +19,20 @@ namespace Tiles {
             reset();
 
             originalTiles[0].print();
-            originalTiles[0].rotate();
+            originalTiles[0].flipVertical();
             originalTiles[0].print();
             originalTiles[0].rotate();
             originalTiles[0].print();
+            originalTiles[0].flipHorizontal();
+            originalTiles[0].print();
+
+            originalTiles[2].print();
+            originalTiles[2].flipVertical();
+            originalTiles[2].print();
+            originalTiles[2].rotate();
+            originalTiles[2].print();
+            originalTiles[2].flipHorizontal();
+            originalTiles[2].print();
 
 
             System.Console.ReadKey();

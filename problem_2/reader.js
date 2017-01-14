@@ -89,7 +89,7 @@ while(priorityQueue.length) {
 			}
 		}
 		if(!exists){
-			priorityQueue.push(moves[i]);	
+			priorityQueue.push(moves[i]);
 			history.push(moves[i].hash);
 			priorityQueue.sort((a,b)=>{
 				return a.heuristic - b.heuristic

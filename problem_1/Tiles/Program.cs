@@ -18,6 +18,13 @@ namespace Tiles {
             init();
             reset();
 
+            originalTiles[0].print();
+            originalTiles[0].rotate();
+            originalTiles[0].print();
+            originalTiles[0].rotate();
+            originalTiles[0].print();
+
+
             System.Console.ReadKey();
         }
 

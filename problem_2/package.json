@@ -1,0 +1,12 @@
+{
+  "name": "WEC-Problem_1",
+  "author": "Nibbles",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "start": "node app.js"
+  },
+  "dependencies": {
+    "fs": "0.0.1-security"
+  }
+}

@@ -14,10 +14,12 @@ namespace Tiles {
         public Floor(char[,] g) {
             originalGrid = g;
             reset();
+            height = originalGrid.GetLength(0);
+            width = originalGrid.GetLength(1);
         }
 
-        public void placeTile(Tile tile) {
-
+        public bool placeTile(Tile tile) {
+            return true;
         }
 
         bool doesTileFit(Tile tile) {
@@ -32,8 +34,20 @@ namespace Tiles {
             grid = originalGrid;
         }
 
-        public void print() {
+        public bool checkSuccess() {
+            return true;
+        }
 
+        public void print() {
+            for (int i = 0; i < height; i++) {
+                String str = "";
+
+                for (int j = 0; j < width; j++) {
+                    str += grid[i, j] + " ";
+                }
+
+                System.Console.WriteLine(str);
+            }
         }
     }
 }

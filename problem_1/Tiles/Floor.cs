@@ -51,8 +51,14 @@ namespace Tiles {
         }
         
         // Search for 1 by 1 holes. If these exist, reset prematurely.
-        bool searchForHole() {
-            return true;
+        public bool searchForHoles() {
+            for (int i = 1; i < height; i++) { // start at one because top row can't have holes
+                for (int j = 0; j < width; j++) {
+                    
+                }
+            }
+
+            return false;
         }
 
         // reset grid to initial state of emptiness

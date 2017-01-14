@@ -52,7 +52,13 @@ namespace Tiles {
                     tilePlaced = floor.placeTile(currentTile);
 
                     if (!tilePlaced) {
-                        System.Console.WriteLine("Reset needed");
+                        System.Console.WriteLine("Reset needed because no valid block placement");
+                        reset();
+                        break;
+                    }
+
+                    if (floor.searchForHoles()) {
+                        System.Console.WriteLine("Reset needed because of hole");
                         reset();
                         break;
                     }

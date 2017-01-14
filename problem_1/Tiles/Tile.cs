@@ -67,11 +67,11 @@ namespace Tiles {
         }
 
         public void print() {
-            for (int y = 0; y < height; y++) {
+            for (int i = 0; i < height; i++) {
                 String str = "";
 
-                for (int x = 0; x < width; x++) {
-                    str += block[y, x] + " ";
+                for (int j = 0; j < width; j++) {
+                    str += block[i, j] + " ";
                 }
 
                 System.Console.WriteLine(str);

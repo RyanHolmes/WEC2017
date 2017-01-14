@@ -18,8 +18,8 @@ namespace Tiles {
             width = originalGrid.GetLength(1);
         }
 
-        public void placeTile(Tile tile) {
-
+        public bool placeTile(Tile tile) {
+            return true;
         }
 
         bool doesTileFit(Tile tile) {
@@ -34,12 +34,16 @@ namespace Tiles {
             grid = originalGrid;
         }
 
+        public bool checkSuccess() {
+            return true;
+        }
+
         public void print() {
-            for (int y = 0; y < height; y++) {
+            for (int i = 0; i < height; i++) {
                 String str = "";
 
-                for (int x = 0; x < width; x++) {
-                    str += grid[y, x] + " ";
+                for (int j = 0; j < width; j++) {
+                    str += grid[i, j] + " ";
                 }
 
                 System.Console.WriteLine(str);

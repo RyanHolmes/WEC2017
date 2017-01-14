@@ -6,14 +6,14 @@ using System.Threading.Tasks;
 
 namespace Tiles {
     class Program {
-        static List<Tile> originalTiles = new List<Tile>();
-        static List<Tile> availibleTiles = new List<Tile>();
-        static Tile currentTile = new Tile();
-        static Floor floor;
+        static List<Tile> originalTiles = new List<Tile>(); // the initial state of all tiles
+        static List<Tile> availibleTiles = new List<Tile>(); // the state of all times currently in use (starts as an 
+        static Tile currentTile = new Tile(); // the current tile being added to the floor
+        static Floor floor; // the 10 by 6 grid that tiles are added to
         static Random random = new Random();
 
         static void Main(string[] args) {
-            System.Console.WriteLine("Hello world!");
+            System.Console.WriteLine("Start");
             
             init();
             reset();
@@ -24,20 +24,49 @@ namespace Tiles {
             originalTiles[0].rotate();
             originalTiles[0].print();
 
+            run();
 
             System.Console.ReadKey();
         }
 
-       static Tile nextTile() {
+        static void run() {
+            while(true) {
+                bool resetNeeded = false;
+
+                for (int i = 0; i < originalTiles.Count; i++) {
+                    currentTile = nextTile();
+                    resetNeeded = floor.placeTile(currentTile);
+
+                    if (resetNeeded) {
+                        System.Console.WriteLine("Reset needed");
+                        reset();
+                        break;
+                    }
+                }
+
+                if (floor.checkSuccess()) {
+                    break;
+                } else {
+                    System.Console.WriteLine("Attempt failed");
+                    reset();
+                }
+            }
+
+            System.Console.WriteLine("Success");
+            floor.print();
+        }
+        
+        static Tile nextTile() {
             //int randIndex = random.Next(availibleTiles.Count);
 
             Tile tile = availibleTiles[0];
             availibleTiles.RemoveAt(0);
             return tile;
-       }
+        }
 
         static void reset() {
             availibleTiles = new List<Tile>(originalTiles);
+            floor.reset();
         }
 
        static void init() {

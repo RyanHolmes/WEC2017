@@ -14,6 +14,8 @@ namespace Tiles {
         public Floor(char[,] g) {
             originalGrid = g;
             reset();
+            height = originalGrid.GetLength(0);
+            width = originalGrid.GetLength(1);
         }
 
         public void placeTile(Tile tile) {
@@ -33,7 +35,15 @@ namespace Tiles {
         }
 
         public void print() {
+            for (int y = 0; y < height; y++) {
+                String str = "";
 
+                for (int x = 0; x < width; x++) {
+                    str += grid[y, x] + " ";
+                }
+
+                System.Console.WriteLine(str);
+            }
         }
     }
 }

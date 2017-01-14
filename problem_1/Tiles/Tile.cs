@@ -12,12 +12,12 @@ namespace Tiles {
         public char[,] block;
         public int complexity;
 
-        public Tile() {
-
-        }
+        public Tile() {}
 
         public Tile(char[,] b) {
-
+            block = b;
+            height = block.GetLength(0);
+            width = block.GetLength(1);
         }
 
         public Tile(Tile copy) {
@@ -28,20 +28,28 @@ namespace Tiles {
 
         }
 
-        public void flipVertical() {
+        public void flipVertical() { // flip about the vertical axis
 
         }
 
-        public void flipHorizontal() {
+        public void flipHorizontal() { // flip about the horizontal axis
 
         }
 
         public void print() {
+            for (int y = 0; y < height; y++) {
+                String str = "";
 
+                for (int x = 0; x < width; x++) {
+                    str += block[y, x] + " ";
+                }
+
+                System.Console.WriteLine(str);
+            }
         }
 
         void computeComplexity() {
-            c = 0;
+            //c = 0;
         }
     }
 }

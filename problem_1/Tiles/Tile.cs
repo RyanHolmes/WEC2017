@@ -93,7 +93,6 @@ namespace Tiles {
         
         void computeComplexity() { // the larger the tile the less places it can be placed
             complexity = width * height;
-            complexity = 0;
         }
     }
 }

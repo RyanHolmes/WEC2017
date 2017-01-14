@@ -1,15 +1,16 @@
-var heuristic = require('./app.js');
+var heuristic = require('./heuristic.js');
 
-function MapState(previousState,positionBlank, positionMove){
+function MapState(previous,positionBlank, positionMove,move){
 	if(!positionBlank){
 		this.score = 0;
-		this.state = previousState;
+		this.state = previous;
 		this.moves = [];
 	} else {
-		this.moves = previousState.moves.slice();
-		this.score = previousState.score + 1;
+		this.moves = previous.moves.slice();
+		this.moves.push(move);
+		this.score = previous.score + 1;
 		// copy the state by value.
-		this.state = previousState.state.map((row)=>{
+		this.state = previous.state.map((row)=>{
 			return row.slice();
 		});
 		this.state[positionBlank[1]][positionBlank[0]] = this.state[positionMove[1]][positionMove[0]];
@@ -23,5 +24,31 @@ function MapState(previousState,positionBlank, positionMove){
 		},hash)
 	},"");
 }
+
+MapState.prototype = {
+	/**
+	 * check if the solution is correct up to X digit
+	 * NOTE: this is no longer used, was used in a previous heuristic
+	 * left here for posterity.
+	 * @return {int} - the index (of a flattened array) that this is correct up to
+	 */
+	correctUpTo: function correctUpTo(){
+		var correctCount = 0;
+		for (var i = 0; i < this.state.length; i++) {
+			for(var j = 0; j < this.state[i].length; j++){
+				if(this.state[i][j] == (i*this.state.length)+j){
+					correctCount++;
+				} else {
+					return correctCount;
+				}
+			}
+		}
+	}
+}
+
+/**
+ * Private members
+ */
+
 
 module.exports = MapState;

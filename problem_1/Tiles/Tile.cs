@@ -21,7 +21,10 @@ namespace Tiles {
         }
 
         public Tile(Tile copy) {
-
+            height = copy.height;
+            width = copy.width;
+            block = copy.block;
+            complexity = copy.complexity;
         }
 
         public void rotate() { // clockwise 90 degrees
@@ -48,8 +51,8 @@ namespace Tiles {
             }
         }
 
-        void computeComplexity() {
-            //c = 0;
+        void computeComplexity() { // the larger the tile the less places it can be placed
+            complexity = width * height;
         }
     }
 }

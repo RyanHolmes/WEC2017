@@ -1,0 +1,23 @@
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="http://cloud.github.com/downloads/uxebu/bonsai/bonsai-0.4.0.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js" type="text/javascript"></script>
+    <title> Testing </title>
+  </head>
+
+  <body>
+    <div id="test"></div>
+    <script>
+      bonsai.run(document.getElementById('test'),{
+        url: 'visual.js',
+        width: 1260,
+        height: 680
+      });
+    </script>
+  </body>
+</html>

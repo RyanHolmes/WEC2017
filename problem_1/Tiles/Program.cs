@@ -6,20 +6,29 @@ using System.Threading.Tasks;
 
 namespace Tiles {
     class Program {
-        List<Tile> originalTiles = new List<Tile>();
-        Tile currentTile = new Tile();
+        static List<Tile> originalTiles = new List<Tile>();
+        static Tile currentTile = new Tile();
+        static Floor floor;
 
         static void Main(string[] args) {
             System.Console.WriteLine("Hello world!");
+            
+            init();
+
+            originalTiles[8].print();
+            originalTiles[8].rotate();
+            originalTiles[8].print();
+
             System.Console.ReadKey();
         }
 
-       void nextTile() {
+       static void nextTile() {
             
         }
 
-        void init() {
-            char[,] A = new char[3,2] {
+       static void init() {
+            // ALL BLOCKS
+            char[,] A = new char[3, 2] {
                         {'A', 'A'},
                         {'A', '0'},
                         {'A', '0'}
@@ -104,6 +113,23 @@ namespace Tiles {
             originalTiles.Add(new Tiles.Tile(J));
             originalTiles.Add(new Tiles.Tile(K));
             originalTiles.Add(new Tiles.Tile(L));
+
+            // FLOOR
+
+            char[,] initialFloor = new char[10, 6] {
+                        {'0', '0', '0', '0', '0', '0'},
+                        {'0', '0', '0', '0', '0', '0'},
+                        {'0', '0', '0', '0', '0', '0'},
+                        {'0', '0', '0', '0', '0', '0'},
+                        {'0', '0', '0', '0', '0', '0'},
+                        {'0', '0', '0', '0', '0', '0'},
+                        {'0', '0', '0', '0', '0', '0'},
+                        {'0', '0', '0', '0', '0', '0'},
+                        {'0', '0', '0', '0', '0', '0'},
+                        {'0', '0', '0', '0', '0', '0'}
+                    };
+
+            floor = new Floor(initialFloor);
         }
 
     }

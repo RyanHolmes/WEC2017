@@ -7,7 +7,7 @@ function MapState(previous,positionBlank, positionMove,move){
 		this.moves = [];
 	} else {
 		this.moves = previous.moves.slice();
-		this.moves.push(move);
+		this.moves.push(previous.hash);
 		this.score = previous.score + 1;
 		// copy the state by value.
 		this.state = previous.state.map((row)=>{

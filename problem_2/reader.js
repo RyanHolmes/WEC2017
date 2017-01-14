@@ -28,8 +28,6 @@ if(puzzle.possible(initialMatrix)){
 }
 
 // perform an A* search to find the best path to the solution
-var FastPriorityQueue = require("fastpriorityqueue");
-
 function foundSolution(solution,counter){
 	console.log("Hurray! Solution found")
 	console.log(solution);

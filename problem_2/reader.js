@@ -1,5 +1,5 @@
 var fs = require('fs');
-var textInput = fs.readFileSync('input/test1.txt','utf8');
+var textInput = fs.readFileSync('input/test2.txt','utf8');
 
 var MapState = require('./mapState.js');
 var moveChecker = require('./moveChecker.js');
@@ -20,28 +20,70 @@ for (var i = 0; i < 4; i++){
   });
 }
 
+if(checkPossible(initialMatrix)){
+	console.log("not possible");
+	process.exit()
+} else {
+	console.log("possible");
+}
+
+function checkPossible(puzzle){
+    var parity = 0;
+    var gridWidth = 4;
+    var row = 0; // the current row we are on
+    var blankRow = 0; // the row with the blank tile
+
+    var puzzle = [].concat.apply([],puzzle);
+
+    for (var i = 0; i < puzzle.length; i++){
+        if (i % gridWidth == 0) { // advance to next row
+            row++;
+        }
+        if (puzzle[i] == 0) { // the blank tile
+            blankRow = row; // save the row on which encountered
+            continue;
+        }
+        for (var j = i + 1; j < puzzle.length; j++)
+        {
+            if (puzzle[i] > puzzle[j] && puzzle[j] != 0)
+            {
+                parity++;
+            }
+        }
+    }
+
+    if (blankRow % 2 == 0) { // blank on odd row; counting from bottom
+        return parity % 2 == 0;
+    } else { // blank on even row; counting from bottom
+        return parity % 2 != 0;
+    }
+}
+
+
 // perform an A* search to find the best path to the solution
 var FastPriorityQueue = require("fastpriorityqueue");
 
-function foundSolution(solution){
-	console.log("Hurray! Solution found")
-	console.log(solution);
+function foundSolution(solution,counter){
+	//console.log("Hurray! Solution found")
+	//console.log(solution);
+	//console.log("checked "+counter);
 }
 
 priorityQueue = [new MapState(initialMatrix)];
 var history = [priorityQueue[0].hash];
 var counter = 0;
-while(priorityQueue.length && counter < 1000) {
+while(priorityQueue.length) {
 	counter++;
 	var current = priorityQueue.shift();
+	console.log(current.hash+',');
 	if(current.heuristic === 0){
-		return foundSolution(current);
+		return foundSolution(current,counter);
 	}
 	var moves = moveChecker(current);
 	for (var i = 0; i < moves.length; i++) {
 		var exists = false;
 		for (var j = 0; j < history.length; j++) {
-			if(history[j].hash === moves[i].hash){
+			if(history[j] === moves[i].hash){
 				exists = true;
 				break;
 			}
@@ -50,7 +92,7 @@ while(priorityQueue.length && counter < 1000) {
 			priorityQueue.push(moves[i]);	
 			history.push(moves[i].hash);
 			priorityQueue.sort((a,b)=>{
-				return a.priority - b.priority
+				return a.heuristic - b.heuristic
 			});
 		}
 	};

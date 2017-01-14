@@ -38,12 +38,11 @@ namespace Tiles {
             {
                 for (int j = 0; j<newColumnNum; j++) //columns
                 {
-                    //newBlock [0,0] = oldBlock[2,0] -> last row, first column -- j = 0
-                    //newBlock [0,1] = oldBlock[1,0] -> second last row, first column -- j = 1
-                    //newBlock [0,2] = oldBlock [0,0] -> first row, first column -- j = 2
-                    block[i, j] = oldBlock[oldColumnNum - 1 - j, i];
+                    block[i, j] = oldBlock[oldRowNum - 1 - j, i];
                 }
             }
+            width = newColumnNum;
+            height = newRowNum;
         }
         
         public void flipVertical() {

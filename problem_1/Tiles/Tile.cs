@@ -18,6 +18,7 @@ namespace Tiles {
             block = b;
             height = block.GetLength(0);
             width = block.GetLength(1);
+            computeComplexity();
         }
 
         public Tile(Tile copy) {

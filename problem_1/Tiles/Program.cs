@@ -7,19 +7,30 @@ using System.Threading.Tasks;
 namespace Tiles {
     class Program {
         static List<Tile> originalTiles = new List<Tile>();
+        static List<Tile> availibleTiles = new List<Tile>();
         static Tile currentTile = new Tile();
         static Floor floor;
+        static Random random = new Random();
 
         static void Main(string[] args) {
             System.Console.WriteLine("Hello world!");
             
             init();
+            reset();
 
             System.Console.ReadKey();
         }
 
-       static void nextTile() {
-            
+       static Tile nextTile() {
+            //int randIndex = random.Next(availibleTiles.Count);
+
+            Tile tile = availibleTiles[0];
+            availibleTiles.RemoveAt(0);
+            return tile;
+       }
+
+        static void reset() {
+            availibleTiles = new List<Tile>(originalTiles);
         }
 
        static void init() {
@@ -109,6 +120,10 @@ namespace Tiles {
             originalTiles.Add(new Tiles.Tile(J));
             originalTiles.Add(new Tiles.Tile(K));
             originalTiles.Add(new Tiles.Tile(L));
+
+
+            // Sort the tiles by their complexity
+            originalTiles = originalTiles.OrderByDescending(t => t.complexity).ToList();
 
             // FLOOR
 

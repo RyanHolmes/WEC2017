@@ -19,4 +19,32 @@ for (var i = 0; i < 4; i++){
   });
 }
 
-console.log(heuristic(initialMatrix));
+
+// perform an A* search to find the best path to the solution
+var FastPriorityQueue = require("fastpriorityqueue");
+
+function getPositionPriority(position){
+	return heuristic(position.state) + position.score;
+}
+
+function foundSolution(solution){
+	console.log("Hurray! Solution found")
+	console.log(solution);
+}
+
+var priorityQueue = new FastPriorityQueue((a,b)=>{
+	return getPositionPriority(a) - getPositionPriority(b);
+});
+
+priorityQueue.add(MapState(initialMatrix));
+while(!priorityQueue.isEmpty()) {
+	var current = priorityQueue.poll();
+	var heuristic = heuristic(current.state);
+	if(heuristic == 0){
+		return foundSolution(current);
+	}
+	getStates().forEach(function(childState){
+		priorityQueue.add(childState);
+	});
+}
+

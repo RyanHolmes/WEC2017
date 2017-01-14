@@ -19,7 +19,6 @@ for (var i = 0; i < 4; i++){
   });
 }
 
-
 // perform an A* search to find the best path to the solution
 var FastPriorityQueue = require("fastpriorityqueue");
 
@@ -48,3 +47,4 @@ while(!priorityQueue.isEmpty()) {
 	});
 }
 
+console.log(heuristic(initialMatrix));

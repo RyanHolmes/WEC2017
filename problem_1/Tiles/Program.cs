@@ -34,7 +34,7 @@ namespace Tiles {
             originalTiles[2].flipHorizontal();
             originalTiles[2].print();
 
-            run();
+            //run();
 
             System.Console.ReadKey();
         }

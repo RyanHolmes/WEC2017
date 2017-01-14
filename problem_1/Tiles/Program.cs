@@ -39,16 +39,26 @@ namespace Tiles {
             System.Console.ReadKey();
         }
 
+        // This function is the core of the program.
+        // Repeatedly run until a solution is found.
+        // If at any point the placement of tiles on the floor don't work, the floor is reset and a new solution is attempted.
+        // If a solution is found, it is printed to the console.
         static void run() {
             while(true) {
-                bool resetNeeded = false;
+                bool tilePlaced = false;
 
                 for (int i = 0; i < originalTiles.Count; i++) {
                     currentTile = nextTile();
-                    resetNeeded = floor.placeTile(currentTile);
+                    tilePlaced = floor.placeTile(currentTile);
 
-                    if (resetNeeded) {
-                        System.Console.WriteLine("Reset needed");
+                    if (!tilePlaced) {
+                        System.Console.WriteLine("Reset needed because no valid block placement");
+                        reset();
+                        break;
+                    }
+
+                    if (floor.searchForHoles()) {
+                        System.Console.WriteLine("Reset needed because of hole");
                         reset();
                         break;
                     }
@@ -66,6 +76,8 @@ namespace Tiles {
             floor.print();
         }
         
+        // choose the next tile to be placed on the floor.
+        // since tiles are sorted by complexity, more complex blocks are placed first.
         static Tile nextTile() {
             //int randIndex = random.Next(availibleTiles.Count);
 
@@ -74,6 +86,7 @@ namespace Tiles {
             return tile;
         }
 
+        // Reset the floor and the set of tiles to their original state
         static void reset() {
             availibleTiles = new List<Tile>(originalTiles);
             floor.reset();

@@ -6,6 +6,8 @@ using System.Threading.Tasks;
 
 namespace Tiles {
     class Tile {
+        // This class is an abstract of a tile that is placed on a floor. 
+        // The spaces in the tile is represented as 0 for an empty space and a capital letter for a filled location.
 
         public int height;
         public int width;
@@ -14,6 +16,7 @@ namespace Tiles {
 
         public Tile() {}
 
+        // standard constructor
         public Tile(char[,] b) {
             block = b;
             height = block.GetLength(0);
@@ -21,6 +24,7 @@ namespace Tiles {
             computeComplexity();
         }
 
+        // copy constructor
         public Tile(Tile copy) {
             height = copy.height;
             width = copy.width;
@@ -79,7 +83,7 @@ namespace Tiles {
             }
         }
 
-        public void print() {
+        public void print() { // print the contents of the tile
             for (int i = 0; i < height; i++) {
                 String str = "";
 
@@ -90,8 +94,11 @@ namespace Tiles {
                 System.Console.WriteLine(str);
             }
         }
-        
-        void computeComplexity() { // the larger the tile the less places it can be placed
+
+        // Compute some sort of complexity heuristic for each tiles.
+        // More complex tiles can be placed in fewer locations and therefore should be placed early for an optimized solution.
+        // In this case, the larger the tile, the less places it can be placed.
+        void computeComplexity() { 
             complexity = width * height;
         }
     }

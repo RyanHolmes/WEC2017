@@ -5,6 +5,7 @@ var side = 100;
 var background = new Rect(0, 0, screenWidth, screenHeight).fill('#405A99').addTo(stage);
 var counter = 0
 var test = getData();
+var all = [];
 
 //Render counter to the stage
 var stageCounter = new Text(counter.toString())
@@ -16,9 +17,9 @@ setInterval(function(){
   //break if you data is done being read
   if(counter < test.length){
     // reset blocks to save memory
-    var blocks = [];
     var matrix = buildMatrix(test[counter]);
     var blocks = drawGrid(matrix);
+    all.push(blocks);
     //Update trial run
     stageCounter.setText(counter.toString());
     //add to screen
@@ -26,6 +27,9 @@ setInterval(function(){
       blocks[p].addTo(stage);
     }
     counter++;
+    if(all.length == 1) return;
+    blocks = all.shift();
+    for(var b = 0; b < blocks.length; b ++) { blocks[b].remove(); }
   }
 }, 10);
 

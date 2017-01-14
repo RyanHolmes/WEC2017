@@ -47,7 +47,7 @@ while(priorityQueue.length && counter < 1000) {
 			}
 		}
 		if(!exists){
-			priorityQueue.push(moves[i]);	
+			priorityQueue.push(moves[i]);
 			history.push(moves[i].hash);
 			priorityQueue.sort((a,b)=>{
 				return a.priority - b.priority

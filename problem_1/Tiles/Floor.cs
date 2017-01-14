@@ -54,7 +54,11 @@ namespace Tiles {
         public bool searchForHoles() {
             for (int i = 1; i < height; i++) { // start at one because top row can't have holes
                 for (int j = 0; j < width; j++) {
-                    
+                    if (grid[i, j] == '0') {
+                        if (grid[i, j - 1] != '0' && grid[i, j + 1] != '0' && grid[i - 1, j] != '0' && grid[i + 1, j] != '0') {
+                            return true;
+                        }
+                    }
                 }
             }
 
